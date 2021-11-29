@@ -1,0 +1,70 @@
+{
+  "id" : "baacc127-ab5d-497c-b2e4-49793ec53953",
+  "names" : [ {
+    "value" : "Conditional Error Processing",
+    "locale" : "en"
+  } ],
+  "templateKey" : "conditionalErrorProcessing",
+  "parameters" : [ {
+    "templateKey" : "transformationConditions",
+    "parameters" : [ {
+      "templateKey" : "logicalConnector",
+      "values" : [ "AND" ]
+    }, {
+      "templateKey" : "transformationCondition",
+      "parameters" : [ {
+        "templateKey" : "transformationVariable",
+        "values" : [ "${response.statusCode}" ]
+      }, {
+        "templateKey" : "transformationConditionOperator",
+        "values" : [ "equals" ]
+      }, {
+        "templateKey" : "transformationConditionValue",
+        "values" : [ "500" ]
+      } ]
+    }, {
+      "templateKey" : "transformationCondition",
+      "parameters" : [ {
+        "templateKey" : "transformationVariable",
+        "values" : [ "${ERROR_MESSAGE}" ]
+      }, {
+        "templateKey" : "transformationConditionOperator",
+        "values" : [ "contains" ]
+      }, {
+        "templateKey" : "transformationConditionValue",
+        "values" : [ "Invalid signature" ]
+      } ]
+    } ]
+  }, {
+    "templateKey" : "errorTransformationConfiguration",
+    "parameters" : [ {
+      "templateKey" : "statusTransformation",
+      "parameters" : [ {
+        "templateKey" : "statusCodeOptional",
+        "values" : [ "401" ]
+      }, {
+        "templateKey" : "statusMessage",
+        "values" : [ "Unauthorized" ]
+      } ]
+    }, {
+      "templateKey" : "customFailureMessages",
+      "parameters" : [ {
+        "templateKey" : "sendNativeProviderFault",
+        "values" : [ "false" ]
+      }, {
+        "templateKey" : "failureMessage",
+        "parameters" : [ {
+          "templateKey" : "contentType",
+          "values" : [ "json" ]
+        }, {
+          "templateKey" : "errortemplate",
+          "values" : [ "{ \r\n    \"ResponseCode\": \"99\", \r\n    \"ResponseMessage\": \"${ERROR_MESSAGE}\", \r\n    \"Data\":null \r\n}" ]
+        }, {
+          "templateKey" : "useAsDefault",
+          "values" : [ "true" ]
+        } ]
+      } ]
+    } ]
+  } ],
+  "active" : false
+}

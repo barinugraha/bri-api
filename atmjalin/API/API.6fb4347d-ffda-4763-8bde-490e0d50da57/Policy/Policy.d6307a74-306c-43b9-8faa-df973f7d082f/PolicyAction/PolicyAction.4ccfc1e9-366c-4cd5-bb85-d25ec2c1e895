@@ -1,0 +1,49 @@
+{
+  "id" : "4ccfc1e9-366c-4cd5-bb85-d25ec2c1e895",
+  "names" : [ {
+    "value" : "Conditional Error Processing",
+    "locale" : "en"
+  } ],
+  "templateKey" : "conditionalErrorProcessing",
+  "parameters" : [ {
+    "templateKey" : "transformationConditions",
+    "parameters" : [ {
+      "templateKey" : "logicalConnector",
+      "values" : [ "OR" ]
+    }, {
+      "templateKey" : "transformationCondition",
+      "parameters" : [ {
+        "templateKey" : "transformationVariable",
+        "values" : [ "${ERROR_MESSAGE}" ]
+      }, {
+        "templateKey" : "transformationConditionOperator",
+        "values" : [ "notContains" ]
+      }, {
+        "templateKey" : "transformationConditionValue",
+        "values" : [ "Invalid signature" ]
+      } ]
+    } ]
+  }, {
+    "templateKey" : "errorTransformationConfiguration",
+    "parameters" : [ {
+      "templateKey" : "customFailureMessages",
+      "parameters" : [ {
+        "templateKey" : "sendNativeProviderFault",
+        "values" : [ "true" ]
+      }, {
+        "templateKey" : "failureMessage",
+        "parameters" : [ {
+          "templateKey" : "contentType",
+          "values" : [ "json" ]
+        }, {
+          "templateKey" : "errortemplate",
+          "values" : [ "{\"test\":\"123\"}" ]
+        }, {
+          "templateKey" : "useAsDefault",
+          "values" : [ "true" ]
+        } ]
+      } ]
+    } ]
+  } ],
+  "active" : false
+}

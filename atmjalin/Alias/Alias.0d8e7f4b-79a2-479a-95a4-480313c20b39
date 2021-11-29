@@ -1,0 +1,15 @@
+{
+  "id" : "0d8e7f4b-79a2-479a-95a4-480313c20b39",
+  "name" : "atmjalin-native-url",
+  "description" : "Jalin Network Management Native URL\nClose : http://api.close.dev.bri.co.id:5557/jalin/nmm",
+  "type" : "endpoint",
+  "owner" : "Administrator",
+  "endPointURI" : "http://mcgwatmjalindev.apps.ocp-dev.bri.co.id",
+  "connectionTimeout" : 30,
+  "readTimeout" : 30,
+  "suspendDurationOnFailure" : 0,
+  "optimizationTechnique" : "None",
+  "passSecurityHeaders" : false,
+  "keystoreAlias" : "",
+  "truststoreAlias" : ""
+}

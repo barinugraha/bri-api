@@ -1,0 +1,253 @@
+{
+  "apiDefinition" : {
+    "info" : {
+      "description" : "This API used to network management from Jalin to bank",
+      "version" : "1.0",
+      "title" : "JalinNetworkMgmt"
+    },
+    "serviceRegistryDisplayName" : "atmjalin_1.0",
+    "tags" : [ {
+      "name" : "JalinGlobalPolicy"
+    } ],
+    "schemes" : [ ],
+    "security" : [ ],
+    "paths" : {
+      "/cutover" : {
+        "post" : {
+          "parameters" : [ {
+            "name" : "Authorization",
+            "in" : "header",
+            "description" : "Oauth Bearer Token",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "X-TimeStamp",
+            "in" : "header",
+            "description" : "\tTransaction timestamp FORMAT: 'yyyy-MMdd'T'HH:mm:ss.SSS'T'Z'",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "X-Signature",
+            "in" : "header",
+            "description" : "Transaction signature. Please refer to document on how to generate signature.",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "X-ReffNumber",
+            "in" : "header",
+            "description" : "Reference number that should be unique in the same day",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/CutOverResponse"
+                  },
+                  "examples" : { }
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CutOverRequest"
+                },
+                "examples" : { }
+              }
+            },
+            "name" : "requestBody"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/cutover",
+        "description" : "",
+        "enabled" : true
+      },
+      "/newkey" : {
+        "post" : {
+          "operationId" : "",
+          "consumes" : [ "application/json" ],
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "name" : "X-ReffNumber",
+            "in" : "header",
+            "description" : " \tReference number that should be unique in the same day",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string",
+              "description" : " \tReference number that should be unique in the same day",
+              "readOnly" : false
+            }
+          }, {
+            "name" : "X-Signature",
+            "in" : "header",
+            "description" : "Transaction signature. Please refer to document on how to generate signature.",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string",
+              "description" : "Transaction signature. Please refer to document on how to generate signature.",
+              "readOnly" : false
+            }
+          }, {
+            "name" : "X-TimeStamp",
+            "in" : "header",
+            "description" : "Transaction timestamp FORMAT: 'yyyy-MMdd'T'HH:mm:ss.SSS'T'Z'",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string",
+              "description" : "Transaction timestamp FORMAT: 'yyyy-MMdd'T'HH:mm:ss.SSS'T'Z'",
+              "readOnly" : false
+            }
+          }, {
+            "name" : "Authorization",
+            "in" : "header",
+            "description" : "Oauth Bearer Token",
+            "required" : true,
+            "type" : "string",
+            "parameterSchema" : {
+              "type" : "string",
+              "description" : "Oauth Bearer Token",
+              "readOnly" : false
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/NewKeyResponse"
+                  },
+                  "examples" : { },
+                  "example" : "{\n    \"ResponseCode\": \"123\",\n    \"ResponseMessage\": \"\",\n    \"Data\": {\n        \"KCV\": \"\",\n        \"ErrorCode\": \"\",\n        \"ExpectKeyCount\": \"\",\n        \"KeyCount\": \"\"\n    }\n}"
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NewKeyRequest"
+                },
+                "examples" : { }
+              }
+            },
+            "name" : "requestBody"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/newkey",
+        "enabled" : true
+      }
+    },
+    "securityDefinitions" : { },
+    "definitions" : { },
+    "parameters" : { },
+    "baseUriParameters" : [ ],
+    "externalDocs" : [ ],
+    "servers" : [ {
+      "url" : "${atmjalin-native-url}",
+      "variables" : { }
+    } ],
+    "components" : {
+      "schemas" : {
+        "NewKeyData" : {
+          "type" : "gateway",
+          "schema" : "{\"required\":[\"ErrorCode\",\"KCV\"],\"type\":\"object\",\"properties\":{\"ErrorCode\":{\"maxLength\":1,\"type\":\"string\",\"description\":\"Valid value for this subfield are : 'C' = Cannot process (General Error) 'F' = Format Error 'H' = Invalid Partner ID or Institution ID 'P' = The value of KeyCount does not match the expected count ' ' = Blanks (No error)\"},\"ExpectKeyCount\":{\"maxLength\":14,\"type\":\"string\",\"description\":\"Hexadecimal key count expected by the receiver of KSM. This field is enable when the error code is 'P'\"},\"KCV\":{\"maxLength\":4,\"type\":\"string\",\"description\":\"Check digit\"},\"KeyCount\":{\"maxLength\":14,\"type\":\"string\",\"description\":\"Original Hexadecimal key count during the request. This field is enable when the error code is 'P'\"}}}"
+        },
+        "NewKeyRequest" : {
+          "type" : "gateway",
+          "schema" : "{\n\t\"required\": [\n\t\t\"OriginatingID\",\n\t\t\"ReceivingID\",\n\t\t\"SecurityInfo\",\n\t\t\"KCV\",\n\t\t\"KeyCounter\",\n\t\t\"NewKey\"\n\t],\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"KCV\": {\n\t\t\t\"maxLength\": 4,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Check digit\",\n\t\t\t\"example\": \"\"\n\t\t},\n\t\t\"KeyCounter\": {\n\t\t\t\"maxLength\": 14,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Hexadecimal Key Count\",\n\t\t\t\"example\": \"\"\n\t\t},\n\t\t\"NewKey\": {\n\t\t\t\"maxLength\": 32,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"New Key Change Value (ans-16 for DES or ans-32 for 3DES Double Length)\",\n\t\t\t\"example\": \"\"\n\t\t},\n\t\t\"OriginatingID\": {\n\t\t\t\"maxLength\": 11,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Requestor institution ID Value Institution '00000000008' Bank Mandiri,'00000000009' Bank Negara Indonesia,'00000000002' Bank Rakyat Indonesia,'00000000200' Bank Tabungan Negara\",\n\t\t\t\"example\": \"00000000002\"\n\t\t},\n\t\t\"ReceivingID\": {\n\t\t\t\"maxLength\": 11,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Jalin ID Fixed value '90000000212'\",\n\t\t\t\"example\": \"90000000212\"\n\t\t},\n\t\t\"SecurityInfo\": {\n\t\t\t\"maxLength\": 4,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Fixed value '0003' Sub field 1: Key Type (n-2) The valid value for this sub field is '00' (PIN Key). Sub field 2: Key Direction (n-2) The valid value for this sub field is '03' (outbound key & inbound key).\",\n\t\t\t\"example\": \"0003\"\n\t\t}\n\t}\n}"
+        },
+        "NewKeyResponse" : {
+          "type" : "gateway",
+          "schema" : "{\"required\":[\"ResponseCode\",\"ResponseMessage\"],\"type\":\"object\",\"properties\":{\"Data\":{\"$ref\":\"#/components/schemas/NewKeyData\"},\"ResponseCode\":{\"maxLength\":4,\"type\":\"string\",\"description\":\"Check digit\"},\"ResponseMessage\":{\"maxLength\":1,\"type\":\"string\",\"description\":\"Valid value for this subfield are : 'C' = Cannot process (General Error) 'F' = Format Error 'H' = Invalid Partner ID or Institution ID 'P' = The value of KeyCount does not match the expected count ' ' = Blanks (No error)\"}}}"
+        },
+        "CutOverRequest" : {
+          "type" : "gateway",
+          "schema" : "{\n\t\"required\": [\n\t\t\"settlementDate\"\n\t],\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"settlementDate\": {\n\t\t\t\"maxLength\": 4,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"MMDD The value in this field must be a valid date: \\\"MM\\\" must be in the range 01-12. \\\"DD\\\" must be in the range 01-31\",\n\t\t\t\"example\": \"1218\"\n\t\t}\n\t}\n}"
+        },
+        "CutOverResponse" : {
+          "type" : "gateway",
+          "schema" : "{\n\t\"required\": [\n\t\t\"responseCode\",\n\t\t\"responseMessage\"\n\t],\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"responseCode\": {\n\t\t\t\"maxLength\": 2,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Response Number\",\n\t\t\t\"example\": \"00\"\n\t\t},\n\t\t\"responseMessage\": {\n\t\t\t\"maxLength\": 150,\n\t\t\t\"type\": \"string\",\n\t\t\t\"description\": \"Response description\",\n\t\t\t\"example\": \"Success\"\n\t\t}\n\t}\n}"
+        }
+      },
+      "responses" : { },
+      "parameters" : { },
+      "examples" : { },
+      "requestBodies" : { },
+      "headers" : { },
+      "links" : { },
+      "callbacks" : { }
+    },
+    "apiTags" : [ "JalinGlobalPolicy" ],
+    "type" : "rest"
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "${atmjalin-native-url}",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "atmjalin",
+  "apiVersion" : "1.0",
+  "apiDescription" : "This API used to network management from Jalin to bank\n",
+  "maturityState" : "Beta",
+  "isActive" : true,
+  "type" : "REST",
+  "owner" : "ari",
+  "policies" : [ "d6307a74-306c-43b9-8faa-df973f7d082f" ],
+  "referencedFiles" : {
+    "atmjalin.json" : "{\n  \"swagger\" : \"2.0\",\n  \"info\" : {\n    \"description\" : \"This API used to network management from Jalin to bank\",\n    \"version\" : \"1.0\",\n    \"title\" : \"JalinNetworkMgmt\"\n  },\n  \"host\" : \"api.privateopen.dev.bri.co.id:5555\",\n  \"basePath\" : \"/gateway/JalinNetworkMgmt/1.0\",\n  \"schemes\" : [ \"http\" ],\n  \"paths\" : {\n    \"/newkey\" : {\n      \"post\" : {\n        \"operationId\" : \"\",\n        \"consumes\" : [ \"application/json\" ],\n        \"produces\" : [ \"application/json\" ],\n        \"parameters\" : [ {\n          \"name\" : \"X-ReffNumber\",\n          \"in\" : \"header\",\n          \"description\" : \" \\tReference number that should be unique in the same day\",\n          \"required\" : true,\n          \"type\" : \"string\"\n        }, {\n          \"name\" : \"X-Signature\",\n          \"in\" : \"header\",\n          \"description\" : \"Transaction signature. Please refer to document on how to generate signature.\",\n          \"required\" : true,\n          \"type\" : \"string\"\n        }, {\n          \"name\" : \"X-TimeStamp\",\n          \"in\" : \"header\",\n          \"description\" : \"Transaction timestamp FORMAT: 'yyyy-MMdd'T'HH:mm:ss.SSS'T'Z'\",\n          \"required\" : true,\n          \"type\" : \"string\"\n        }, {\n          \"name\" : \"Authorization\",\n          \"in\" : \"header\",\n          \"description\" : \"Oauth Bearer Token\",\n          \"required\" : true,\n          \"type\" : \"string\"\n        }, {\n          \"in\" : \"body\",\n          \"name\" : \"body\",\n          \"required\" : false,\n          \"schema\" : {\n            \"$ref\" : \"#/definitions/NewKeyRequest\"\n          }\n        } ],\n        \"responses\" : {\n          \"200\" : {\n            \"description\" : \"\",\n            \"examples\" : {\n              \"application/json\" : \"{\\n    \\\"ResponseCode\\\": \\\"123\\\",\\n    \\\"ResponseMessage\\\": \\\"\\\",\\n    \\\"Data\\\": {\\n        \\\"KCV\\\": \\\"\\\",\\n        \\\"ErrorCode\\\": \\\"\\\",\\n        \\\"ExpectKeyCount\\\": \\\"\\\",\\n        \\\"KeyCount\\\": \\\"\\\"\\n    }\\n}\"\n            },\n            \"schema\" : {\n              \"$ref\" : \"#/definitions/NewKeyResponse\"\n            }\n          }\n        }\n      }\n    }\n  },\n  \"definitions\" : {\n    \"NewKeyData\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"ErrorCode\", \"KCV\" ],\n      \"properties\" : {\n        \"KCV\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Check digit\",\n          \"maxLength\" : 4\n        },\n        \"ErrorCode\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Valid value for this subfield are : 'C' = Cannot process (General Error) 'F' = Format Error 'H' = Invalid Partner ID or Institution ID 'P' = The value of KeyCount does not match the expected count ' ' = Blanks (No error)\",\n          \"maxLength\" : 1\n        },\n        \"ExpectKeyCount\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Hexadecimal key count expected by the receiver of KSM. This field is enable when the error code is 'P'\",\n          \"maxLength\" : 14\n        },\n        \"KeyCount\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Original Hexadecimal key count during the request. This field is enable when the error code is 'P'\",\n          \"maxLength\" : 14\n        }\n      }\n    },\n    \"NewKeyRequest\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"KCV\", \"KeyCounter\", \"NewKey\", \"OriginatingID\", \"ReceivingID\", \"SecurityInfo\" ],\n      \"properties\" : {\n        \"ReceivingID\" : {\n          \"type\" : \"string\",\n          \"example\" : \"90000000212\",\n          \"description\" : \"Jalin ID Fixed value '90000000212'\",\n          \"maxLength\" : 11\n        },\n        \"SecurityInfo\" : {\n          \"type\" : \"string\",\n          \"example\" : \"0003\",\n          \"description\" : \"Fixed value '0003' Sub field 1: Key Type (n-2) The valid value for this sub field is '00' (PIN Key). Sub field 2: Key Direction (n-2) The valid value for this sub field is '03' (outbound key & inbound key).\",\n          \"maxLength\" : 4\n        },\n        \"OriginatingID\" : {\n          \"type\" : \"string\",\n          \"example\" : \"00000000002\",\n          \"description\" : \"Requestor institution ID Value Institution '00000000008' Bank Mandiri,'00000000009' Bank Negara Indonesia,'00000000002' Bank Rakyat Indonesia,'00000000200' Bank Tabungan Negara\",\n          \"maxLength\" : 11\n        },\n        \"KCV\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Check digit\",\n          \"maxLength\" : 4\n        },\n        \"NewKey\" : {\n          \"type\" : \"string\",\n          \"description\" : \"New Key Change Value (ans-16 for DES or ans-32 for 3DES Double Length)\",\n          \"maxLength\" : 32\n        },\n        \"KeyCounter\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Hexadecimal Key Count\",\n          \"maxLength\" : 14\n        }\n      }\n    },\n    \"NewKeyResponse\" : {\n      \"type\" : \"object\",\n      \"required\" : [ \"ResponseCode\", \"ResponseMessage\" ],\n      \"properties\" : {\n        \"ResponseCode\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Check digit\",\n          \"maxLength\" : 4\n        },\n        \"ResponseMessage\" : {\n          \"type\" : \"string\",\n          \"description\" : \"Valid value for this subfield are : 'C' = Cannot process (General Error) 'F' = Format Error 'H' = Invalid Partner ID or Institution ID 'P' = The value of KeyCount does not match the expected count ' ' = Blanks (No error)\",\n          \"maxLength\" : 1\n        },\n        \"Data\" : {\n          \"$ref\" : \"#/definitions/NewKeyData\"\n        }\n      }\n    }\n  }\n}\n"
+  },
+  "tracingEnabled" : false,
+  "scopes" : [ ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2021-10-07 02:17:10 GMT",
+  "lastModified" : "2021-10-29 10:51:34 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : {
+    "openapi" : "jalin/openapi/nmm"
+  },
+  "deployments" : [ ],
+  "microgatewayEndpoints" : [ ],
+  "appMeshEndpoints" : [ ],
+  "id" : "6fb4347d-ffda-4763-8bde-490e0d50da57"
+}

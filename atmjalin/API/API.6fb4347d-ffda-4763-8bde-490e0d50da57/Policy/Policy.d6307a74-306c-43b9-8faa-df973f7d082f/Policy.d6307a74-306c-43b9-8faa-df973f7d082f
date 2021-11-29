@@ -1,0 +1,40 @@
+{
+  "id" : "d6307a74-306c-43b9-8faa-df973f7d082f",
+  "names" : [ {
+    "value" : "Default Policy for API atmjalin",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "2a97a4db-b603-407c-b79b-538cc7e6617b",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "baacc127-ab5d-497c-b2e4-49793ec53953",
+      "order" : "0"
+    }, {
+      "enforcementObjectId" : "4ccfc1e9-366c-4cd5-bb85-d25ec2c1e895",
+      "order" : "1"
+    } ],
+    "stageKey" : "responseFaultProcessing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "13ffd696-a40e-49d6-9de5-326b9639db34",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "systemPolicy" : false,
+  "global" : false,
+  "active" : false
+}

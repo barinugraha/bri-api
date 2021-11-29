@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
+    <buildInfo name="BuildTimestamp" value="2021-11-30T12:41:03"/>
+    <asset name="API.6fb4347d-ffda-4763-8bde-490e0d50da57" displayName="atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="API"/>
+        <dependsOn>APIGateway:Policy.d6307a74-306c-43b9-8faa-df973f7d082f</dependsOn>
+    </asset>
+    <asset name="Policy.d6307a74-306c-43b9-8faa-df973f7d082f" displayName="Policy For API atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.13ffd696-a40e-49d6-9de5-326b9639db34</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.2a97a4db-b603-407c-b79b-538cc7e6617b</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.4ccfc1e9-366c-4cd5-bb85-d25ec2c1e895</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.baacc127-ab5d-497c-b2e4-49793ec53953</dependsOn>
+    </asset>
+    <asset name="PolicyAction.2a97a4db-b603-407c-b79b-538cc7e6617b" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.0d8e7f4b-79a2-479a-95a4-480313c20b39</dependsOn>
+    </asset>
+    <asset name="Alias.0d8e7f4b-79a2-479a-95a4-480313c20b39" displayName="atmjalin-native-url" isDeployable="true">
+        <implementation.generic type="Alias"/>
+        <property name="Endpoint URI for Endpoint alias atmjalin-native-url" many="false" isSecure="false" displayName="Endpoint URI for Endpoint alias atmjalin-native-url">
+            <value>http://mcgwatmjalindev.apps.ocp-dev.bri.co.id</value>
+        </property>
+        <property name="Optimization technique for Endpoint alias atmjalin-native-url" many="false" isSecure="false" displayName="Optimization technique for Endpoint alias atmjalin-native-url">
+            <value>None</value>
+        </property>
+        <property name="Connection timeout for Endpoint alias atmjalin-native-url" many="false" isSecure="false" displayName="Connection timeout for Endpoint alias atmjalin-native-url">
+            <value>30</value>
+        </property>
+        <property name="Read timeout for Endpoint alias atmjalin-native-url" many="false" isSecure="false" displayName="Read timeout for Endpoint alias atmjalin-native-url">
+            <value>30</value>
+        </property>
+        <property name="Pass WS-Security Headers for Endpoint alias atmjalin-native-url" many="false" isSecure="false" displayName="Pass WS-Security Headers for Endpoint alias atmjalin-native-url">
+            <value>false</value>
+        </property>
+    </asset>
+    <asset name="PolicyAction.baacc127-ab5d-497c-b2e4-49793ec53953" displayName="Policy Action [Conditional Error Processing] -&gt; Policy For API atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.4ccfc1e9-366c-4cd5-bb85-d25ec2c1e895" displayName="Policy Action [Conditional Error Processing] -&gt; Policy For API atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.13ffd696-a40e-49d6-9de5-326b9639db34" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API atmjalin[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+</asset_composite>
